@@ -1,0 +1,42 @@
+body {
+    margin: 0px;
+}
+
+.contents {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: aquamarine;
+    height: max(100px, 10vh);
+}
+
+.container {
+    background-color: rgb(179, 253, 253);
+    height: max(200px, 80vh);
+    text-align: center;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#userinput {
+    margin: 10px;
+}
+
+.infobox {
+    background-color: aqua;
+    border-radius: 10px;
+    margin: 10px;
+    min-height: 100px;
+    min-width: 100px;
+}
+
+.footer {
+    background-color: azure;
+    height: max(100px, 10vh);
+}
