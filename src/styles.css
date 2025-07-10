@@ -8,13 +8,13 @@ body {
 }
 
 .header {
-    background-color: aquamarine;
+    background: linear-gradient(to top, #6bd0f8 0%,#4eaef7 100%);
     height: max(100px, 10vh);
 }
 
 .container {
-    background-color: rgb(179, 253, 253);
-    height: max(200px, 80vh);
+    background: linear-gradient(to bottom, #b7eaff 0%,#94dfff 100%);
+    height: max(200px, 85vh);
     text-align: center;
 }
 
@@ -29,7 +29,7 @@ body {
 }
 
 .infobox {
-    background-color: aqua;
+    background: linear-gradient(to top, #6bd0f8 0%,#4eaef7 100%); 
     border-radius: 10px;
     margin: 10px;
     min-height: 100px;
@@ -37,6 +37,6 @@ body {
 }
 
 .footer {
-    background-color: azure;
-    height: max(100px, 10vh);
+    background: rgb(230, 230, 230);
+    height: max(50px, 5vh);
 }

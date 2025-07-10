@@ -9,16 +9,21 @@
     <div class="contents">
         <div class="header">Odin Weather App</div>
         <div class="container">
-            <input type="text" name="userinput" id="userinput" placeholder="city">
-            <button class="search">Search</button>
+            <input type="text" name="userinput" id="userinput" placeholder="e.g. Berlin">
+            <button class="searchbutton">Search</button>
+            <br>
+            <div id="searchbar">
+                <div id="description">Search for the weather in any city!</div>
+            </div>
+            
             <div class="info">
-                <div class="infobox">e.g. Temp</div>
-                <div class="infobox">e.g. Weather</div>
-                <div class="infobox">e.g. Wind</div>
-                <div class="infobox">e.g. Precipitation</div>
+                <div class="infobox" id="current-conditions">Weather</div>
+                <div class="infobox"id="temperature">Current Temp + Min/Max</div>
+                <div class="infobox" id="expected-precipitation">Precipitation</div>
+                <div class="infobox" id="extra-info">Wind, UV, Sunset/Sunrise</div>
             </div>
         </div>
-        <div class="footer">&copy 2025 Elias Bach</div>
+        <div class="footer">Made as part of an exercise for The Odin Project</div>
     </div>
 </body>
 </html>
