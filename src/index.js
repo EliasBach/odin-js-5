@@ -5,10 +5,18 @@ const userinput = document.querySelector("#userinput")
 const search_button = document.querySelector(".searchbutton")
 search_button.addEventListener("click", fetchWeatherData)
 const description = document.querySelector("#description")
-const box_weather = document.querySelector("#current-conditions")
-const box_temp = document.querySelector("#temperature")
-const box_precip = document.querySelector("#expected-precipitation")
-const box_extra = document.querySelector("#extra-info")
+const div_weather = document.querySelector("#current-conditions")
+const div_temp = document.querySelector("#temperature")
+const div_temp_current = document.querySelector("#temp_current")
+const div_temp_min = document.querySelector("#temp_min")
+const div_temp_max = document.querySelector("#temp_max")
+const div_precip = document.querySelector("#precipitation")
+const div_uvindex = document.querySelector("#uv-index")
+const div_wind = document.querySelector("#wind")
+const div_sunrise_sunset = document.querySelector("#sunrise-sunset")
+const div_sunrise = document.querySelector("#sunrise")
+const div_sunset = document.querySelector("#sunset")
+const infoboxes = document.querySelectorAll(".infobox")
 
 function fetchWeatherData() {
     fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${userinput.value}?key=${API_key}`, {mode: 'cors'})
@@ -29,13 +37,35 @@ function fetchWeatherData() {
 function processWeatherData(data) {
     console.log(data)
     description.textContent = `${data.resolvedAddress}: ${data.description}`
-    box_weather.textContent = `${data.currentConditions.conditions}`
-    let tempC = tempFtoC(data.currentConditions.temp).toFixed(1)
-    box_temp.textContent = `${tempC} °C`
-    box_precip.textContent = `${data.currentConditions.precip}`
-    box_extra.textContent = `UV-Index: ${data.currentConditions.uvindex}`
+    // Conditions
+    div_weather.textContent = `${data.currentConditions.conditions}`
+
+    // Temperature
+    div_temp_current.textContent = `${tempFtoC(data.currentConditions.temp)} °C`
+    div_temp_min.textContent = `L: ${tempFtoC(data.days[0].tempmin)}`
+    div_temp_max.textContent = `H: ${tempFtoC(data.days[0].tempmax)}`
+    
+    // Rain
+    div_precip.textContent = `Rain: ${data.currentConditions.precip} mm`
+
+    // UV-Index
+    div_uvindex.textContent = `UV-Index: ${data.currentConditions.uvindex}`
+
+    // Wind
+    div_wind.textContent = `Winds: ${windMPHtoKMH(data.currentConditions.windspeed)} km/h`
+
+    // Sunset / Sunrise
+    div_sunrise.textContent = `Sunrise: ${data.currentConditions.sunrise.slice(0, 5)}`
+    div_sunset.textContent = `Sunset: ${data.currentConditions.sunset.slice(0, 5)}`
+    
+    // display
+    infoboxes.forEach((infobox) => {infobox.style.display = "block"})
 }
 
 function tempFtoC(tempF) {
-    return ((tempF-32) * (5/9))
+    return ((tempF-32) * (5/9)).toFixed(1)
+}
+
+function windMPHtoKMH(windMPH) {
+    return (windMPH*1.60934).toFixed(1)
 }
