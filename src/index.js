@@ -28,7 +28,7 @@ function fetchWeatherData() {
 
 function processWeatherData(data) {
     console.log(data)
-    description.textContent = `Current weather in ${data.resolvedAddress}`
+    description.textContent = `${data.resolvedAddress}: ${data.description}`
     box_weather.textContent = `${data.currentConditions.conditions}`
     let tempC = tempFtoC(data.currentConditions.temp).toFixed(1)
     box_temp.textContent = `${tempC} °C`
