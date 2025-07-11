@@ -9,28 +9,30 @@
     <div class="contents">
         <div class="header">Odin Weather App</div>
         <div class="container">
-            <input type="text" name="userinput" id="userinput" placeholder="e.g. Berlin">
-            <button class="searchbutton">Search</button>
-            <br>
             <div id="searchbar">
-                <div id="description">Search for the weather in any city!</div>
+                <input type="text" name="userinput" id="userinput" placeholder="e.g. Berlin">
+                <button id="searchbutton">Search</button>
             </div>
-            
             <div class="info">
-                <div class="infobox" id="current-conditions"></div>
-                <div class="infobox"id="temperature">
-                    <div id="temp_current"></div>
-                    <div id="temp_min"></div>
-                    <div id="temp_max"></div>
+                <div class="infobox" id="current-conditions">
+                    <img id="weathericon" src="#">
+                    <div id="conditions-text"> </div>
                 </div>
-                <div class="infobox" id="precipitation"></div>
-                <div class="infobox" id="uv-index"></div>
-                <div class="infobox" id="wind"></div>
+                <div class="infobox"id="temperature">
+                    <div id="temp_max">max: Max</div>
+                    <div id="temp_current">Temp °C</div>
+                    <div id="temp_min">min: Min</div>
+                </div>
+                <div class="infobox" id="precipitation">XX mm</div>
+                <div class="infobox" id="uv-index">UV-Index: X</div>
+                <div class="infobox" id="wind">Winds: xx km/h</div>
                 <div class="infobox" id="sunrise-sunset">
-                    <div id="sunrise"></div>
-                    <div id="sunset"></div>
+                    <div id="sunrise">🌅: 06:00</div>
+                    <br>
+                    <div id="sunset">🌇: 21:00</div>
                 </div>
             </div>
+            <div id="description">Search the weather at your location!</div>
         </div>
         <div class="footer">Made as part of an exercise for The Odin Project</div>
     </div>

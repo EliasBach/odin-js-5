@@ -2,10 +2,12 @@ import "./styles.css";
 // key is public and does not need to be hidden
 const API_key = "477T375DGMGEH24S6FDPG3JV3"
 const userinput = document.querySelector("#userinput")
-const search_button = document.querySelector(".searchbutton")
+const search_button = document.querySelector("#searchbutton")
 search_button.addEventListener("click", fetchWeatherData)
 const description = document.querySelector("#description")
 const div_weather = document.querySelector("#current-conditions")
+const weather_icon = document.querySelector('#weathericon')
+const conditions_text = document.querySelector("#conditions-text")
 const div_temp = document.querySelector("#temperature")
 const div_temp_current = document.querySelector("#temp_current")
 const div_temp_min = document.querySelector("#temp_min")
@@ -37,13 +39,28 @@ function fetchWeatherData() {
 function processWeatherData(data) {
     console.log(data)
     description.textContent = `${data.resolvedAddress}: ${data.description}`
+    
     // Conditions
-    div_weather.textContent = `${data.currentConditions.conditions}`
+    if (data.currentConditions.conditions.includes("Rain, Partially cloudy")) {
+        weather_icon.src = require("./icons/cloud-sun-rain.png")
+    } else if (data.currentConditions.conditions.includes("Partially cloudy")) {
+        weather_icon.src = require("./icons/partly-cloudy-day.png")
+    } else if (data.currentConditions.conditions.includes("Rain")) {
+        weather_icon.src = require("./icons/rain.png")
+    } else if (data.currentConditions.conditions.includes("Overcast")) {
+        weather_icon.src = require("./icons/cloudy.png")
+    } else if (data.currentConditions.conditions.includes("Clear")) {
+        weather_icon.src = require("./icons/clear-day.png")
+    } else {
+        weather_icon.style.display = "none"
+    }
 
+    conditions_text.textContent = `${data.currentConditions.conditions}`
+    
     // Temperature
     div_temp_current.textContent = `${tempFtoC(data.currentConditions.temp)} °C`
-    div_temp_min.textContent = `L: ${tempFtoC(data.days[0].tempmin)}`
-    div_temp_max.textContent = `H: ${tempFtoC(data.days[0].tempmax)}`
+    div_temp_min.textContent = `min: ${tempFtoC(data.days[0].tempmin)}`
+    div_temp_max.textContent = `max: ${tempFtoC(data.days[0].tempmax)}`
     
     // Rain
     div_precip.textContent = `Rain: ${data.currentConditions.precip} mm`
@@ -55,8 +72,8 @@ function processWeatherData(data) {
     div_wind.textContent = `Winds: ${windMPHtoKMH(data.currentConditions.windspeed)} km/h`
 
     // Sunset / Sunrise
-    div_sunrise.textContent = `Sunrise: ${data.currentConditions.sunrise.slice(0, 5)}`
-    div_sunset.textContent = `Sunset: ${data.currentConditions.sunset.slice(0, 5)}`
+    div_sunrise.textContent = `🌅: ${data.currentConditions.sunrise.slice(0, 5)}`
+    div_sunset.textContent = `🌇: ${data.currentConditions.sunset.slice(0, 5)}`
     
     // display
     infoboxes.forEach((infobox) => {infobox.style.display = "block"})
