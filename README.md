@@ -1,5 +1,5 @@
-# The Odin Project Javascript Course: Exercise 5
-## Weather
+# The Odin Project: Javascript Course Exercise 5
+## Weather App
 Description: This exercise asks to build a weather, using a public API 
 
 Concepts Tested:
